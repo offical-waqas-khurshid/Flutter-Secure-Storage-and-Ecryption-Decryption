@@ -3,11 +3,8 @@ import 'dart:convert';
 import 'package:encrypt/encrypt.dart';
 
 class Utils{
-  final key = Key.fromUtf8('H4WtkvK4qyehIe2kjQfH7we1xIHFK67e');
-  final iv = IV.fromUtf8('HgNRbGHbDSz9T0CC');
-
-
-
+  final key = Key.fromUtf8('15helloTCJTALK20');
+  final iv = IV.fromLength(16);
 
 // Encrypt a message
   String encrypt(String message) {

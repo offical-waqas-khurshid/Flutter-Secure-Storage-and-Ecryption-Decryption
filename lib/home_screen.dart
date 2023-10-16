@@ -1,4 +1,5 @@
 import 'package:demo/secure_storage.dart';
+import 'package:demo/utils.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,7 +12,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late TextEditingController textEditingController;
   SecureStorage secureStorage = SecureStorage();
-
+  Utils utils = Utils();
+  var result;
   @override
   void initState() {
     textEditingController = TextEditingController();
@@ -68,15 +70,17 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  var result = secureStorage.writeSecureData(
-                      'name', textEditingController.text);
+                 var encryptedMessage =  utils.encrypt(textEditingController.text);
+                  result = secureStorage.writeSecureData(
+                      'name', encryptedMessage );
                   print("The write data is = $result");
                 },
                 child: const Text("Add Data")),
             ElevatedButton(
                 onPressed: () {
-                  var readResult = secureStorage.readSecureData('name');
-                  print("The Read data is = $readResult");
+                secureStorage.readSecureData('name');
+                  // // var decryptedMessage =  utils.decrypt(readResult);
+                  // print("The Read data is = $readResult");
                 },
                 child: const Text("Read Data")),
             ElevatedButton(
