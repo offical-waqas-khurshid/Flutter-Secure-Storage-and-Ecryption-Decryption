@@ -2,7 +2,10 @@ import 'package:demo/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorage {
+  /// create Object of Flutter Secure Storage
   final FlutterSecureStorage storage = const FlutterSecureStorage();
+
+  /// Create object of Utils Class to use his functions and properties
   final Utils utils = Utils();
 
   /// Write Data Function
@@ -21,5 +24,4 @@ class SecureStorage {
   }
 
   /// Delete One item from Secure Storage Database
-
 }
