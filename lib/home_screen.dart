@@ -76,8 +76,7 @@ class _HomePageState extends State<HomePage> {
                       secureStorage.utils.encrypt(textEditingController.text);
                   print(
                       "Result data after apply encryption = $encryptedMessage");
-                  result =
-                      secureStorage.writeData('name', encryptedMessage);
+                  result = secureStorage.writeData('name', encryptedMessage);
                   print("The write data in Flutter_Secure_Storage  = $result");
                 },
                 child: const Text("Add Data")),
