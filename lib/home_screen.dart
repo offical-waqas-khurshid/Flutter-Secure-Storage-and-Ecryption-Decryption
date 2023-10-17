@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   SecureStorage secureStorage = SecureStorage();
 
   var result;
+  var writeMultiple;
 
   @override
   void initState() {
@@ -105,23 +106,31 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     print(
                         "The text of TextEditingController = ${nameTextEditingController.text}");
-                    String encryptedMessage =
-                        secureStorage.utils.encrypt(nameTextEditingController.text);
+                    String encryptedMessage = secureStorage.utils
+                        .encrypt(nameTextEditingController.text);
                     print(
                         "Result data after apply encryption = $encryptedMessage");
                     result = secureStorage.writeData('name', encryptedMessage);
-                    print("The write data in Flutter_Secure_Storage  = $result");
+                    print(
+                        "The write data in Flutter_Secure_Storage  = $result");
                   },
                   child: const Text("Add Data")),
               ElevatedButton(
                   onPressed: () async {
-                    String value = await secureStorage.readData('name');
-                    print("The write read from Flutter_Secure_Storage = $value");
-                    String decryptedMessage = secureStorage.utils.decrypt(value);
+                    String value = await secureStorage.readData('name1');
+                    print(
+                        "The write read from Flutter_Secure_Storage = $value");
+                    String decryptedMessage =
+                        secureStorage.utils.decrypt(value);
                     print(
                         "The decrypted message from Flutter_Secure_Storage = $decryptedMessage");
                   },
                   child: const Text("Read Data")),
+              ElevatedButton(
+                  onPressed: () async {
+                    await secureStorage.readAllData();
+                  },
+                  child: const Text("Read All Data")),
               ElevatedButton(
                   onPressed: () {
                     secureStorage.deleteData("name");
@@ -144,11 +153,14 @@ class _HomePageState extends State<HomePage> {
                   child: const Text("Get All Keys")),
               ElevatedButton(
                   onPressed: () {
-                    final valuesToStore = {
-                      'key1': nameTextEditingController.text,
-                      'key2': passwordTextEditingController.text,
+                    final dataToStore = {
+                      'name1': nameTextEditingController.text,
+                      'password1': passwordTextEditingController.text,
+                      'key3': 'value3',
                     };
-                    secureStorage.writeMultipleData(valuesToStore);
+                    writeMultiple =
+                        secureStorage.writeMultipleData(dataToStore);
+                    print("The write multiple $writeMultiple");
                   },
                   child: const Text("Write Multiple Data")),
               ElevatedButton(
@@ -161,7 +173,6 @@ class _HomePageState extends State<HomePage> {
                     secureStorage.deleteData("name");
                   },
                   child: const Text("Update Data one Field")),
-
             ],
           ),
         ),

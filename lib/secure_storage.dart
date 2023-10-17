@@ -68,4 +68,18 @@ class SecureStorage {
       print('Key does not exist.');
     }
   }
+
+  /// To read all data stored in flutter_secure_storage
+  Future<void> readAllData() async {
+    final allData = await storageInstance.readAll();
+
+    if (allData.isNotEmpty) {
+      // Iterate through the key-value pairs and print them
+      allData.forEach((key, value) {
+        print('$key: $value');
+      });
+    } else {
+      print('No data found in secure storage.');
+    }
+  }
 }
