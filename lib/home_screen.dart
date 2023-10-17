@@ -143,12 +143,14 @@ class _HomePageState extends State<HomePage> {
                   child: const Text("Delete All Data")),
               ElevatedButton(
                   onPressed: () {
-                    secureStorage.doesKeyExist("name");
+                 writeMultiple  =  secureStorage.doesKeyExist("name");
+                 print(writeMultiple);
                   },
                   child: const Text("Does key Exits")),
               ElevatedButton(
                   onPressed: () {
-                    secureStorage.deleteData("name");
+                    writeMultiple   =  secureStorage.getAllKeys();
+                    print("The all the keys $writeMultiple");
                   },
                   child: const Text("Get All Keys")),
               ElevatedButton(
@@ -165,12 +167,13 @@ class _HomePageState extends State<HomePage> {
                   child: const Text("Write Multiple Data")),
               ElevatedButton(
                   onPressed: () {
-                    secureStorage.deleteData("name");
+                    secureStorage.deleteAllData();
                   },
                   child: const Text("Delete Multiple Data")),
               ElevatedButton(
                   onPressed: () {
-                    secureStorage.deleteData("name");
+                  result =  secureStorage.updateData("name", "updatedValue");
+                  print(result);
                   },
                   child: const Text("Update Data one Field")),
             ],
