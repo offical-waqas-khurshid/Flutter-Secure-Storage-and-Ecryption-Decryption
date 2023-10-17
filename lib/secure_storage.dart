@@ -5,15 +5,21 @@ class SecureStorage {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
   final Utils utils = Utils();
 
-  writeSecureData(String key, String value) async {
+  /// Write Data Function
+  writeData(String key, String value) async {
     await storage.write(key: key, value: value);
   }
 
-  Future<String> readSecureData(String key) async {
+  /// Read Data Function
+  Future<String> readData(String key) async {
     return await storage.read(key: key) ?? 'No data found!';
   }
 
-  deleteSecureData(String key) async {
+  /// Delete All Data Function
+  deleteData(String key) async {
     await storage.delete(key: key);
   }
+
+  /// Delete One item from Secure Storage Database
+
 }

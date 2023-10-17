@@ -1,5 +1,4 @@
 import 'package:demo/secure_storage.dart';
-import 'package:demo/utils.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,28 +70,29 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
                 onPressed: () {
+                  print(
+                      "The text of TextEditingController = ${textEditingController.text}");
                   String encryptedMessage =
                       secureStorage.utils.encrypt(textEditingController.text);
-                  print(encryptedMessage);
+                  print(
+                      "Result data after apply encryption = $encryptedMessage");
                   result =
-                      secureStorage.writeSecureData('name', encryptedMessage);
-                  print("The write data is = $result");
+                      secureStorage.writeData('name', encryptedMessage);
+                  print("The write data in Flutter_Secure_Storage  = $result");
                 },
                 child: const Text("Add Data")),
             ElevatedButton(
                 onPressed: () async {
-                  String value = await secureStorage.readSecureData('name');
-                  print("The write read is = $value");
+                  String value = await secureStorage.readData('name');
+                  print("The write read from Flutter_Secure_Storage = $value");
                   String decryptedMessage = secureStorage.utils.decrypt(value);
-                  print(decryptedMessage);
-
-                  // // var decryptedMessage =  utils.decrypt(readResult);
-                  // print("The Read data is = $readResult");
+                  print(
+                      "The decrypted message from Flutter_Secure_Storage = $decryptedMessage");
                 },
                 child: const Text("Read Data")),
             ElevatedButton(
                 onPressed: () {
-                  secureStorage.deleteSecureData("name");
+                  secureStorage.deleteData("name");
                 },
                 child: const Text("Delete Data")),
           ],
