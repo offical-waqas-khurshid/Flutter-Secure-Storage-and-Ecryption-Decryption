@@ -12,8 +12,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late TextEditingController textEditingController;
   SecureStorage secureStorage = SecureStorage();
-  Utils utils = Utils();
+
   var result;
+
   @override
   void initState() {
     textEditingController = TextEditingController();
@@ -70,15 +71,21 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                 var encryptedMessage =  utils.encrypt(textEditingController.text);
-                  result = secureStorage.writeSecureData(
-                      'name', encryptedMessage );
+                  String encryptedMessage =
+                      secureStorage.utils.encrypt(textEditingController.text);
+                  print(encryptedMessage);
+                  result =
+                      secureStorage.writeSecureData('name', encryptedMessage);
                   print("The write data is = $result");
                 },
                 child: const Text("Add Data")),
             ElevatedButton(
-                onPressed: () {
-                secureStorage.readSecureData('name');
+                onPressed: () async {
+                  String value = await secureStorage.readSecureData('name');
+                  print("The write read is = $value");
+                  String decryptedMessage = secureStorage.utils.decrypt(value);
+                  print(decryptedMessage);
+
                   // // var decryptedMessage =  utils.decrypt(readResult);
                   // print("The Read data is = $readResult");
                 },
