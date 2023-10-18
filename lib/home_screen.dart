@@ -158,7 +158,6 @@ class _HomePageState extends State<HomePage> {
                     final dataToStore = {
                       'name1': nameTextEditingController.text,
                       'password1': passwordTextEditingController.text,
-                      'key3': 'value3',
                     };
                     writeMultiple =
                         secureStorage.writeMultipleData(dataToStore);
@@ -172,8 +171,8 @@ class _HomePageState extends State<HomePage> {
                   child: const Text("Delete Multiple Data")),
               ElevatedButton(
                   onPressed: () {
-                    result = secureStorage.updateData("name", "updatedValue");
-                    print(result);
+                    secureStorage.addOrUpdateData("name1", "updatedValue");
+                    // print(result);
                   },
                   child: const Text("Update Data one Field")),
             ],

@@ -54,20 +54,25 @@ class SecureStorage {
   }
 
   /// Update Data based on new key and value of Secure Storage
-  Future<void> updateData(String key, String updatedValue) async {
-    // Read the existing value
-    final existingValue = await storageInstance.read(key: key);
-
-    if (existingValue != null) {
-      // Modify the value, e.g., concatenate a new string
-      final newValue = '$existingValue, $updatedValue';
-
-      // Write the updated value back to the same key
-      await storageInstance.write(key: key, value: newValue);
-    } else {
-      print('Key does not exist.');
-    }
+  addOrUpdateData(String key, String value) async {
+    await storageInstance.write(key: key, value: value);
   }
+  // Future<void> updateData(String key, String updatedValue) async {
+  //   // Read the existing value
+  //   final existingValue = await storageInstance.read(key: key);
+  //   print("Read the existing value $existingValue");
+  //
+  //   if (existingValue != null) {
+  //     String retrievedValue = utils.decrypt(existingValue);
+  //      print("The retrieved value of storage = $retrievedValue");
+  //     final newValue = '$existingValue, $updatedValue';
+  //
+  //     // Write the updated value back to the same key
+  //     await storageInstance.write(key: key, value: newValue);
+  //   } else {
+  //     print('Key does not exist.');
+  //   }
+  // }
 
   /// To read all data stored in flutter_secure_storage
   Future<void> readAllData() async {
