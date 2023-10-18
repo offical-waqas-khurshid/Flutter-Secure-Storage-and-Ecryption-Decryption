@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:convert';
+import 'dart:convert';
 
 import 'package:encrypt/encrypt.dart';
 
@@ -23,9 +24,15 @@ class Utils {
     final encrypted = Encrypted.fromBase64(encryptedMessage);
     final decrypted = encrypter.decrypt(encrypted, iv: iv);
     return decrypted;
-    // final encrypter = Encrypter(AES(key, mode:AESMode.cbc, padding: "PKCS7"));
-    // final decoded = base64.decode(encryptedMessage);
-    // final decrypted = encrypter.decrypt(Encrypted(decoded), iv: iv);
-    //return decrypted;
+  }
+
+  /// Encrypt multiple data
+  Map<String, String> encryptMultipleData(Map<String, String> data) {
+    final encryptedData = <String, String>{};
+    data.forEach((key, value) {
+      final encryptedValue = encrypt(value);
+      encryptedData[key] = encryptedValue;
+    });
+    return encryptedData;
   }
 }

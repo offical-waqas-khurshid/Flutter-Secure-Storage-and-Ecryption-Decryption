@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                     print(
                         "The text of TextEditingController = ${nameTextEditingController.text}");
                     String encryptedMessage = secureStorage.utils
-                        .encrypt(nameTextEditingController.text);
+                        .encrypt(nameTextEditingController.text,);
                     print(
                         "Result data after apply encryption = $encryptedMessage");
                     result = secureStorage.writeData('name', encryptedMessage);
@@ -159,8 +159,10 @@ class _HomePageState extends State<HomePage> {
                       'name1': nameTextEditingController.text,
                       'password1': passwordTextEditingController.text,
                     };
+                    final encryptedData  = secureStorage.utils.encryptMultipleData(dataToStore);
+
                     writeMultiple =
-                        secureStorage.writeMultipleData(dataToStore);
+                        secureStorage.writeMultipleData(encryptedData);
                     print("The write multiple $writeMultiple");
                   },
                   child: const Text("Write Multiple Data")),
