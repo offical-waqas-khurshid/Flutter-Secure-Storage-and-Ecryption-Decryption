@@ -1,26 +1,23 @@
 import 'dart:convert';
-import 'dart:convert';
-import 'dart:convert';
-
 import 'package:encrypt/encrypt.dart';
 
 class Utils {
   /// Your private key
-  final key = Key.fromUtf8('15helloTCJTALK20');
+  final key = Key.fromUtf8('15helloTCJTALK2015helloTCJTALK20');
 
   /// Your encrypted based length i.e. 16,32,64
-  final iv = IV.fromLength(16);
+  final iv = IV.fromLength(32);
 
   /// Encrypt a message
   String encrypt(String message) {
-    final encrypter = Encrypter(AES(key,mode: AESMode.cbc, padding: "PKCS7"));
+    final encrypter = Encrypter(AES(key, mode: AESMode.gcm, padding: null));
     final encrypted = encrypter.encrypt(message, iv: iv);
     return base64.encode(encrypted.bytes);
   }
 
   /// Decrypt an encrypted message
   String decrypt(String encryptedMessage) {
-    final encrypter = Encrypter(AES(key, mode:AESMode.cbc, padding: "PKCS7"));
+    final encrypter = Encrypter(AES(key, mode: AESMode.gcm, padding: null));
     final encrypted = Encrypted.fromBase64(encryptedMessage);
     final decrypted = encrypter.decrypt(encrypted, iv: iv);
     return decrypted;

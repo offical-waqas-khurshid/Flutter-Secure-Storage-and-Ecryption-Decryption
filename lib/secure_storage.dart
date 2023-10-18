@@ -57,6 +57,7 @@ class SecureStorage {
   addOrUpdateData(String key, String value) async {
     await storageInstance.write(key: key, value: value);
   }
+
   // Future<void> updateData(String key, String updatedValue) async {
   //   // Read the existing value
   //   final existingValue = await storageInstance.read(key: key);
@@ -73,8 +74,6 @@ class SecureStorage {
   //     print('Key does not exist.');
   //   }
   // }
-
-
 
   /// To read all data stored in flutter_secure_storage
   Future<void> readAllData() async {

@@ -106,8 +106,9 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     print(
                         "The text of TextEditingController = ${nameTextEditingController.text}");
-                    String encryptedMessage = secureStorage.utils
-                        .encrypt(nameTextEditingController.text,);
+                    String encryptedMessage = secureStorage.utils.encrypt(
+                      nameTextEditingController.text,
+                    );
                     print(
                         "Result data after apply encryption = $encryptedMessage");
                     result = secureStorage.writeData('name', encryptedMessage);
@@ -117,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   child: const Text("Add Data")),
               ElevatedButton(
                   onPressed: () async {
-                    String value = await secureStorage.readData('name1');
+                    String value = await secureStorage.readData('name');
                     print(
                         "The write read from Flutter_Secure_Storage = $value");
                     String decryptedMessage =
@@ -159,7 +160,8 @@ class _HomePageState extends State<HomePage> {
                       'name1': nameTextEditingController.text,
                       'password1': passwordTextEditingController.text,
                     };
-                    final encryptedData  = secureStorage.utils.encryptMultipleData(dataToStore);
+                    final encryptedData =
+                        secureStorage.utils.encryptMultipleData(dataToStore);
 
                     writeMultiple =
                         secureStorage.writeMultipleData(encryptedData);
